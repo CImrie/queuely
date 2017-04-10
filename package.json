@@ -1,0 +1,23 @@
+{
+  "name": "queuey",
+  "version": "0.1.0",
+  "description": "Background Job/Event Queue. Works with multiple transports such as Redis.",
+  "main": "src/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_ENV=testing ava --verbose"
+  },
+  "keywords": [
+    "queue",
+    "redis",
+    "jobs",
+    "events",
+    "background",
+    "processing",
+    "sqs"
+  ],
+  "author": "Connor Imrie <connorimrie@outlook.com>",
+  "license": "MIT"
+}
