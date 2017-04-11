@@ -1,36 +1,21 @@
 class SyncTransport {
-    constructor() {
-        this._queues = {};
-        this._defaultQueueName = 'default';
+    constructor(options) {
+        this.handlers = options.handlers;
     }
 
     push(dispatchable, options = {}) {
-        let queue = options.queue || this._defaultQueueName;
-        this.get(queue).push(dispatchable);
+        this.handlers.fire(dispatchable);
 
         return this;
     }
 
     pop(options = {}) {
-        let queue = options.queue || this._defaultQueueName;
-        return this.get(queue).pop();
-    }
-
-    get(queue) {
-        if(!this._queues[queue])
-        {
-            let newQueue = {};
-            newQueue[queue] = [];
-
-            this._queues[queue] = [];
-        }
-
-        return this._queues[queue];
+        return null;
     }
 }
 
-let sync = () => {
-    return new SyncTransport();
+let sync = (options) => {
+    return new SyncTransport(options);
 };
 
 export default sync;

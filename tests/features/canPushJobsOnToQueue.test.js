@@ -6,5 +6,5 @@ test('can push a job on to the queue', async t => {
   let job = new TestJob();
 
   queuey.dispatch(job).toBackground();
-  t.is(queuey.syncTransport._queues['default'][0], job);
+  t.is(queuey.transport._queues['default'][0], job);
 });
