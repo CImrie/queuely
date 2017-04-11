@@ -1,16 +1,19 @@
+import sync from './transports/sync';
+import Envelope from './Envelope';
+
 class Queuey {
   constructor() {
-    this._transport = null;
+    this.syncTransport = this.transport = sync();
+
+    console.log(this.syncTransport, this.transport);
   }
 
   use(transport) {
-    this._transport = transport;
+    this.transport = transport;
   }
 
   dispatch(dispatchable) {
-    // create a new envelope
-    // give self to the envelope
-    // only dispatch when call now() or toBackground() on it.
+      return new Envelope(this, dispatchable);
   }
 }
 
