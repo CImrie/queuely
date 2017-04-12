@@ -10,7 +10,8 @@ class Queuey {
     this.syncTransport = sync({
       handlers: this.handlers
     });
-    this.transport = array();
+
+    this.use(array());
   }
 
   use(transport) {

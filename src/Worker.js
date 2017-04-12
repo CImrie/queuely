@@ -75,12 +75,8 @@ class Worker {
     this.markJobAsStoppedProcessing(job)
   }
 
-  markJobFailed() {
-    console.log('failed!!!');
-  }
-
-  handleCrashedJob(job, err) {
-    console.log('crashed!!!');
+  markJobFailed(job, err) {
+    console.log('hello');
   }
 
   async runJob(job) {
@@ -88,7 +84,7 @@ class Worker {
     this._handlers.fire(job).then(() => {
       this.markJobCompleted(job);
     }).catch((err) => {
-      this.handleCrashedJob(job, err);
+      this.markJobFailed(job, err);
     });
 
     return true;

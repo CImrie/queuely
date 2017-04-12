@@ -22,14 +22,12 @@
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.19.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2017": "^6.24.1"
   },
-  "dependencies": {
-    "lodash": "^4.17.4",
-    "node-uuid": "^1.4.8"
-  },
+  "dependencies": {},
   "ava": {
     "files": [
       "tests/**/*.test.js"

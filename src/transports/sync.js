@@ -1,10 +1,12 @@
 class SyncTransport {
-    constructor(options) {
+    constructor(options = {}) {
+        this._options = options;
         this.handlers = options.handlers;
     }
 
     push(dispatchable, options = {}) {
-        this.handlers.fire(dispatchable);
+        let globalOptions = this._options;
+        this.handlers.fire(dispatchable, {...globalOptions, ...options});
 
         return this;
     }

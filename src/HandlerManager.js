@@ -1,5 +1,6 @@
 import Job from './dispatchables/Job'
-// import Event from './dispatchables/Event'
+import Event from './dispatchables/Event'
+import Trier from './utils/Trier';
 
 class HandlerManager {
   constructor() {
@@ -7,10 +8,9 @@ class HandlerManager {
   }
 
   async register(objectClassDefinition, handler) {
-    if(objectClassDefinition.prototype instanceof Job)
-    {
+    if(objectClassDefinition.prototype instanceof Job) {
 
-      if(this.handlers[objectClassDefinition.name]){
+      if(this.handlers[objectClassDefinition.name]) {
         throw new Error("Jobs can only have one registered handler.");
       }
 
@@ -18,10 +18,19 @@ class HandlerManager {
       return this;
     }
 
-    throw new Error("Dispatchable must be of type Job from queuey/dispatchables/Job");
+    if(objectClassDefinition.prototype instanceof Event) {
+      if(!this.handlers[objectClassDefinition.name]) {
+        this.handlers[objectClassDefinition.name] = [];
+      }
+
+      this.handlers[objectClassDefinition.name].push(handler);
+      return this;
+    }
+
+    throw new Error("Dispatchable must be of type Job or Event from queuey/dispatchables");
   }
 
-  fire(object) {
+  fire(object, options = {}) {
     let handlers = this.handlers[object.constructor.name];
 
     if(!handlers) {
@@ -36,7 +45,13 @@ class HandlerManager {
 
     handlers.forEach(handler => {
       promises.push(new Promise((resolve, reject) => {
-        return handler(object, resolve, reject);
+        return Trier
+          .attempt(handler)
+          .using(object, resolve, reject)
+          .times(options.tries)
+          .then(success => resolve(success))
+          .catch(err => reject(err))
+          ;
       }));
     });
 
