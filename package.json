@@ -1,6 +1,6 @@
 {
   "name": "queuely",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Background Job/Event Queue. Works with multiple transports such as Redis.",
   "main": "build/index.js",
   "directories": {
