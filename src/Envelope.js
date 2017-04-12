@@ -7,14 +7,16 @@ class Envelope {
 
     onQueue(queueName) {
         this._options.queue = queueName;
+
+        return this;
     }
 
-    toBackground() {
-        this._queuely.transport.push(this._dispatchable, this._options);
+    async toBackground() {
+        return await this._queuely.transport.push(this._dispatchable, this._options);
     }
 
-    now() {
-        this._queuely.syncTransport.push(this._dispatchable, this._options);
+    async now() {
+        return await this._queuely.syncTransport.push(this._dispatchable, this._options);
     }
 }
 

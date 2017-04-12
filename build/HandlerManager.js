@@ -29,6 +29,7 @@ var HandlerManager = function () {
     _classCallCheck(this, HandlerManager);
 
     this.handlers = {};
+    this.classMap = {};
   }
 
   _createClass(HandlerManager, [{
@@ -40,7 +41,7 @@ var HandlerManager = function () {
             switch (_context.prev = _context.next) {
               case 0:
                 if (!(objectClassDefinition.prototype instanceof _Job2.default)) {
-                  _context.next = 5;
+                  _context.next = 6;
                   break;
                 }
 
@@ -53,12 +54,13 @@ var HandlerManager = function () {
 
               case 3:
 
+                this.classMap[objectClassDefinition.name] = objectClassDefinition.prototype;
                 this.handlers[objectClassDefinition.name] = handler;
                 return _context.abrupt('return', this);
 
-              case 5:
+              case 6:
                 if (!(objectClassDefinition.prototype instanceof _Event2.default)) {
-                  _context.next = 9;
+                  _context.next = 11;
                   break;
                 }
 
@@ -66,13 +68,14 @@ var HandlerManager = function () {
                   this.handlers[objectClassDefinition.name] = [];
                 }
 
+                this.classMap[objectClassDefinition.name] = objectClassDefinition.prototype;
                 this.handlers[objectClassDefinition.name].push(handler);
                 return _context.abrupt('return', this);
 
-              case 9:
+              case 11:
                 throw new Error("Dispatchable must be of type Job or Event from queuely/dispatchables");
 
-              case 10:
+              case 12:
               case 'end':
                 return _context.stop();
             }
@@ -94,7 +97,7 @@ var HandlerManager = function () {
       var handlers = this.handlers[object.constructor.name];
 
       if (!handlers) {
-        throw new Error("No dispatchable handler registerd for type: " + object.name);
+        throw new Error("No dispatchable handler registerd for type: " + object.constructor.name);
       }
 
       if (!Array.isArray(handlers)) {

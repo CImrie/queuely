@@ -16,6 +16,9 @@ class Queuely {
 
   use(transport) {
     this.transport = transport;
+    if(this.transport.configure) {
+      this.transport.configure(this);
+    }
 
     return this;
   }

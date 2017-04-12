@@ -151,7 +151,6 @@ var Worker = function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-
                 this._handlers.fire(job).then(function () {
                   _this2.markJobCompleted(job);
                 }).catch(function (err) {
@@ -191,24 +190,28 @@ var Worker = function () {
                 return _context3.abrupt('return');
 
               case 2:
-                job = this._transport.pop({ queue: this._queue });
+                _context3.next = 4;
+                return this._transport.pop({ queue: this._queue });
+
+              case 4:
+                job = _context3.sent;
 
                 if (!job) {
-                  _context3.next = 8;
+                  _context3.next = 10;
                   break;
                 }
 
                 this.runningJobs++;
-                _context3.next = 7;
+                _context3.next = 9;
                 return this.runJob(job);
 
-              case 7:
+              case 9:
                 return _context3.abrupt('return', _context3.sent);
 
-              case 8:
+              case 10:
                 return _context3.abrupt('return', false);
 
-              case 9:
+              case 11:
               case 'end':
                 return _context3.stop();
             }

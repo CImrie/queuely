@@ -5,15 +5,16 @@ import Trier from './utils/Trier';
 class HandlerManager {
   constructor() {
     this.handlers = {};
+    this.classMap = {};
   }
 
   async register(objectClassDefinition, handler) {
     if(objectClassDefinition.prototype instanceof Job) {
-
       if(this.handlers[objectClassDefinition.name]) {
         throw new Error("Jobs can only have one registered handler.");
       }
 
+      this.classMap[objectClassDefinition.name] = objectClassDefinition.prototype;
       this.handlers[objectClassDefinition.name] = handler;
       return this;
     }
@@ -23,6 +24,7 @@ class HandlerManager {
         this.handlers[objectClassDefinition.name] = [];
       }
 
+      this.classMap[objectClassDefinition.name] = objectClassDefinition.prototype;
       this.handlers[objectClassDefinition.name].push(handler);
       return this;
     }
@@ -34,7 +36,7 @@ class HandlerManager {
     let handlers = this.handlers[object.constructor.name];
 
     if(!handlers) {
-      throw new Error("No dispatchable handler registerd for type: " + object.name);
+      throw new Error("No dispatchable handler registerd for type: " + object.constructor.name);
     }
 
     if(!Array.isArray(handlers)) {

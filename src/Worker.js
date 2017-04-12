@@ -84,7 +84,6 @@ class Worker {
   }
 
   async runJob(job) {
-
     this._handlers.fire(job).then(() => {
       this.markJobCompleted(job);
     }).catch((err) => {
@@ -99,7 +98,7 @@ class Worker {
       return;
     }
 
-    let job = this._transport.pop({queue: this._queue});
+    let job = await this._transport.pop({queue: this._queue});
 
     if(job) {
       this.runningJobs++;

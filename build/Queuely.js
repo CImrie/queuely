@@ -42,6 +42,9 @@ var Queuely = function () {
     key: 'use',
     value: function use(transport) {
       this.transport = transport;
+      if (this.transport.configure) {
+        this.transport.configure(this);
+      }
 
       return this;
     }
