@@ -1,6 +1,6 @@
-# Queuey
+# Queuely
 
-Queuey is a multi-transport queue package for Node.js.
+Queuely is a multi-transport queue package for Node.js.
 It supports a 'sync' and 'array' driver out of the box, which lets you
 get set up quickly.
 
@@ -12,7 +12,7 @@ If you want to take the risk, please let me know if any bugs or issues arise. Ot
 
 **Official Transport Roadmap:** 
 
-[] Redis - `queuey-redis-transport` (not yet built - but is a priority!)
+[] Redis - `queuely-redis-transport` (not yet built - but is a priority!)
 
 ### Features
 
@@ -28,9 +28,9 @@ If you want to take the risk, please let me know if any bugs or issues arise. Ot
 ## Usage
 
 ```ecmascript 6
-import queue from 'queuey';
-import Job from 'queuey/dispatchables/Job'
-import Event from 'queuey/dispatchables/Event'
+import queue from 'queuely';
+import Job from 'queuely/dispatchables/Job'
+import Event from 'queuely/dispatchables/Event'
 
 // To use another transport, import the transport, then use it as a function
 // with the necessary options

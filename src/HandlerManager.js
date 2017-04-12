@@ -27,7 +27,7 @@ class HandlerManager {
       return this;
     }
 
-    throw new Error("Dispatchable must be of type Job or Event from queuey/dispatchables");
+    throw new Error("Dispatchable must be of type Job or Event from queuely/dispatchables");
   }
 
   fire(object, options = {}) {

@@ -3,10 +3,10 @@ import EventEmitter from 'events';
 const RUNNING_JOBS_COUNT_CHANGED = 'RUNNING_JOBS_COUNT_CHANGED';
 
 class Worker {
-  constructor(queuey, options = {}) {
-    this._queuey = queuey;
-    this._transport = options.transport || queuey.transport;
-    this._handlers = queuey.handlers;
+  constructor(queuely, options = {}) {
+    this._queuely = queuely;
+    this._transport = options.transport || queuely.transport;
+    this._handlers = queuely.handlers;
     this._queue = options.queue;
     this._concurrency = options.concurrency || 1;
     this._runningJobs = 0;
