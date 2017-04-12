@@ -14,6 +14,7 @@ class Worker {
     this._timer = setInterval(()=>{}, this._interval);
     this._running = false;
     this._notifier = new EventEmitter();
+    this._successReporter = options._successReporter || function(){};
     this._errorReporter = options.errorReporter || function(){};
 
     // Listen to concurrency changes and respond appropriately.
@@ -73,7 +74,8 @@ class Worker {
   }
 
   markJobCompleted(job) {
-    this.markJobAsStoppedProcessing(job)
+    this.markJobAsStoppedProcessing(job);
+    this._successReporter(job);
   }
 
   markJobFailed(job, err) {
