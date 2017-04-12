@@ -4,7 +4,7 @@ import array from './transports/array';
 import Envelope from './Envelope';
 import HandlerManager from './HandlerManager'
 
-class Queuey {
+class Queuely {
   constructor() {
     this.handlers = new HandlerManager();
     this.syncTransport = sync({
@@ -31,4 +31,4 @@ class Queuey {
   }
 }
 
-export default Queuey;
+export default Queuely;

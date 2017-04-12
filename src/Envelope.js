@@ -1,6 +1,6 @@
 class Envelope {
-    constructor(queuey, dispatchable) {
-        this._queuey = queuey;
+    constructor(queuely, dispatchable) {
+        this._queuely = queuely;
         this._dispatchable = dispatchable;
         this._options = {};
     }
@@ -10,11 +10,11 @@ class Envelope {
     }
 
     toBackground() {
-        this._queuey.transport.push(this._dispatchable, this._options);
+        this._queuely.transport.push(this._dispatchable, this._options);
     }
 
     now() {
-        this._queuey.syncTransport.push(this._dispatchable, this._options);
+        this._queuely.syncTransport.push(this._dispatchable, this._options);
     }
 }
 

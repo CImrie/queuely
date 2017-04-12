@@ -1,4 +1,4 @@
-import Queuey from './Queuey';
+import Queuey from './Queuely';
 
 let queue = new Queuey();
 
