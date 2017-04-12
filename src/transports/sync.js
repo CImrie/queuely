@@ -14,6 +14,10 @@ class SyncTransport {
     pop(options = {}) {
         return null;
     }
+
+    fail(job, err) {
+        throw new Error("Job failed with error: " . err.message);
+    }
 }
 
 let sync = (options) => {

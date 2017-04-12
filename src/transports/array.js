@@ -27,6 +27,12 @@ class ArrayTransport {
 
     return this._queues[queue];
   }
+
+  fail(job) {
+    this.push(job, {queue: 'failed'});
+
+    return this;
+  }
 }
 
 let array = () => {

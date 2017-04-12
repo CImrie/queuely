@@ -14,6 +14,7 @@ class Worker {
     this._timer = setInterval(()=>{}, this._interval);
     this._running = false;
     this._notifier = new EventEmitter();
+    this._errorReporter = options.errorReporter || function(){};
 
     // Listen to concurrency changes and respond appropriately.
     this._notifier.on(RUNNING_JOBS_COUNT_CHANGED, (before, after) => {
@@ -76,7 +77,8 @@ class Worker {
   }
 
   markJobFailed(job, err) {
-    console.log('hello');
+    this._transport.fail(job, err);
+    this._errorReporter(err, job);
   }
 
   async runJob(job) {
